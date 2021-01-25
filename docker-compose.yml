@@ -1,0 +1,40 @@
+version: '2'
+services:
+  #  mariadb:
+  #    image: 'docker.io/bitnami/mariadb:10.3-debian-10'
+  #    environment:
+  #      - ALLOW_EMPTY_PASSWORD=yes
+  #      - MARIADB_USER=bn_mediawiki
+  #      - MARIADB_DATABASE=bitnami_mediawiki
+  #    volumes:
+  #      - 'mariadb_data:/bitnami/mariadb'
+  mediawiki:
+    image: 'analogj/bitnami-mediawiki:gcp'
+    ports:
+      - '80:8080'
+      - '443:8443'
+    environment:
+      - BITNAMI_DEBUG=true
+      - MEDIAWIKI_DATABASE_HOST
+      - MEDIAWIKI_DATABASE_PORT_NUMBER=3306
+      - MEDIAWIKI_DATABASE_USER=root
+      - MEDIAWIKI_DATABASE_PASSWORD
+      - MEDIAWIKI_DATABASE_NAME=bitnami_mediawiki
+      - MYSQL_CLIENT_DATABASE_HOST
+      - MYSQL_CLIENT_DATABASE_PORT_NUMBER=3306
+      - MYSQL_CLIENT_DATABASE_ROOT_USER=root
+      - MYSQL_CLIENT_DATABASE_ROOT_PASSWORD
+      - MYSQL_CLIENT_CREATE_DATABASE_NAME=bitnami_mediawiki
+      - MYSQL_CLIENT_CREATE_DATABASE_CHARACTER_SET=utf8
+      - MYSQL_CLIENT_CREATE_DATABASE_COLLATE=utf8_general_ci
+      # we cannot create a user/password here because bitnami uses mariadb syntax that is incompatible with GCP.
+
+#    volumes:
+#      - 'mediawiki_data:/bitnami/mediawiki'
+#    depends_on:
+#      - mariadb
+#volumes:
+#  mariadb_data:
+#    driver: local
+#  mediawiki_data:
+#    driver: local

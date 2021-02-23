@@ -1,0 +1,5 @@
+{
+	"require": {
+		"mediawiki/semantic-bundle": "~3.2"
+	}
+}

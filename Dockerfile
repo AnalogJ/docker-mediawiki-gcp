@@ -1,4 +1,4 @@
-FROM docker.io/bitnami/mediawiki:1.35.1
+FROM docker.io/bitnami/mediawiki:1.33.1
 ENV MW_INSTALL_PATH=/opt/bitnami/mediawiki
 
 USER root

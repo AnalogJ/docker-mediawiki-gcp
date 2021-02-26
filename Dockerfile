@@ -32,5 +32,5 @@ RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \
 #    && cd Widgets && composer update --no-dev
 
 COPY ./rootfs/ /
-#RUN cd /opt/bitnami/mediawiki && composer update --no-dev && chown 1001:1001 -R /opt/bitnami/mediawiki/
+RUN cd /opt/bitnami/mediawiki && composer update --no-dev
 #USER 1001

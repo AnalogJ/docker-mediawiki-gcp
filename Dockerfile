@@ -6,10 +6,13 @@ ENV MW_INSTALL_PATH=/opt/bitnami/mediawiki
 # modify the sql tables to remove references to MyISAM engine (which does not work with GCP Cloud SQL)
 # https://phabricator.wikimedia.org/T177477
 COPY patches/tables.sql.patch /opt/bitnami/mediawiki/maintenance/tables.sql.patch
+COPY patches/httpd-vhost-php.conf.tpl.patch /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/httpd-vhost-php.conf.tpl.patch
 RUN apt-get update \
     && apt-get install -y patch nano git \
     && cd /opt/bitnami/mediawiki/maintenance/ \
-    && patch tables.sql tables.sql.patch
+    && patch tables.sql tables.sql.patch \
+    && cd /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/ \
+    && patch httpd-vhost-php.conf.tpl httpd-vhost-php.conf.tpl.patch
 
 # download Composer, used for managing Mediawiki extensions
 RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \

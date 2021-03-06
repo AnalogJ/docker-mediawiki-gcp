@@ -81,7 +81,7 @@ RUN cd /opt/bitnami/mediawiki/extensions/ \
     && mkdir -p Widgets \
     && curl -L -o Widgets.tar.gz https://github.com/wikimedia/mediawiki-extensions-Widgets/archive/REL1_33.tar.gz \
     && tar -xvf Widgets.tar.gz --strip 1 -C Widgets \
-#    && cd Widgets && composer update --no-dev && cd ../ \
+    && cd Widgets && composer update --no-dev && cd ../ \
 
     && cd /opt/bitnami/mediawiki/skins \
 

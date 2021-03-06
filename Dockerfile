@@ -20,19 +20,79 @@ RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \
     && composer --help
 #
 #
-## install addl plugins
-#RUN cd /opt/bitnami/mediawiki/extensions/ \
-#    && curl -L -o GoogleLogin.tar.gz https://extdist.wmflabs.org/dist/extensions/GoogleLogin-REL1_35-dfe43cb.tar.gz \
-#    && tar -xf GoogleLogin.tar.gz \
-#    && curl -L -o Math.tar.gz https://extdist.wmflabs.org/dist/extensions/Math-REL1_35-a412f37.tar.gz \
-#    && tar -xf Math.tar.gz \
-#    && curl -L -o /opt/bitnami/mediawiki/extensions/GoogleDocs4MW.tar.gz https://extdist.wmflabs.org/dist/extensions/GoogleDocs4MW-REL1_35-aee6720.tar.gz \
-#    && tar -xf GoogleDocs4MW.tar.gz \
-#    && curl -L -o /opt/bitnami/mediawiki/extensions/NotebookViewer.tar.gz https://extdist.wmflabs.org/dist/extensions/NotebookViewer-REL1_35-d227198.tar.gz \
-#    && tar -xf NotebookViewer.tar.gz \
-#    && cd /opt/bitnami/mediawiki/extensions/ \
-#    && git clone https://gerrit.wikimedia.org/r/mediawiki/extensions/Widgets.git \
-#    && cd Widgets && composer update --no-dev
+# install addl plugins
+RUN cd /opt/bitnami/mediawiki/extensions/ \
+    && mkdir -p MultimediaViewer \
+    && curl -L -o MultimediaViewer.tar.gz https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/MultimediaViewer/+archive/refs/heads/REL1_33.tar.gz \
+    && tar -xvf MultimediaViewer.tar.gz --strip 1 -C MultimediaViewer \
+
+    && mkdir -p ParserFunctions \
+    && curl -L -o ParserFunctions.tar.gz https://github.com/wikimedia/mediawiki-extensions-ParserFunctions/archive/REL1_33.tar.gz \
+    && tar -xvf ParserFunctions.tar.gz --strip 1 -C ParserFunctions \
+
+    && mkdir -p Math \
+    && curl -L -o Math.tar.gz https://github.com/wikimedia/mediawiki-extensions-Math/archive/REL1_33.tar.gz \
+    && tar -xvf Math.tar.gz --strip 1 -C Math \
+
+    && mkdir -p VisualEditor \
+    && curl -L -o VisualEditor.tar.gz https://github.com/wikimedia/mediawiki-extensions-VisualEditor/archive/REL1_33.tar.gz \
+    && tar -xvf VisualEditor.tar.gz --strip 1 -C VisualEditor \
+
+    && mkdir -p WikiEditor \
+    && curl -L -o WikiEditor.tar.gz https://github.com/wikimedia/mediawiki-extensions-WikiEditor/archive/REL1_33.tar.gz \
+    && tar -xvf WikiEditor.tar.gz --strip 1 -C WikiEditor \
+
+    && mkdir -p GoogleLogin \
+    && curl -L -o GoogleLogin.tar.gz https://github.com/wikimedia/mediawiki-extensions-GoogleLogin/archive/REL1_33.tar.gz \
+    && tar -xvf GoogleLogin.tar.gz --strip 1 -C GoogleLogin \
+
+    && mkdir -p Scribunto \
+    && curl -L -o Scribunto.tar.gz https://github.com/wikimedia/mediawiki-extensions-Scribunto/archive/REL1_33.tar.gz \
+    && tar -xvf Scribunto.tar.gz --strip 1 -C Scribunto \
+
+    && mkdir -p TemplateData \
+    && curl -L -o TemplateData.tar.gz https://github.com/wikimedia/mediawiki-extensions-TemplateData/archive/REL1_33.tar.gz \
+    && tar -xvf TemplateData.tar.gz --strip 1 -C TemplateData \
+
+    && mkdir -p TemplateStyles \
+    && curl -L -o TemplateStyles.tar.gz https://github.com/wikimedia/mediawiki-extensions-TemplateStyles/archive/REL1_33.tar.gz \
+    && tar -xvf TemplateStyles.tar.gz --strip 1 -C TemplateStyles \
+
+    && mkdir -p Citoid \
+    && curl -L -o Citoid.tar.gz https://github.com/wikimedia/mediawiki-extensions-Citoid/archive/REL1_33.tar.gz \
+    && tar -xvf Citoid.tar.gz --strip 1 -C Citoid \
+
+    && mkdir -p CodeMirror \
+    && curl -L -o CodeMirror.tar.gz https://github.com/wikimedia/mediawiki-extensions-CodeMirror/archive/REL1_33.tar.gz \
+    && tar -xvf CodeMirror.tar.gz --strip 1 -C CodeMirror \
+
+    && mkdir -p MobileFrontend \
+    && curl -L -o MobileFrontend.tar.gz https://github.com/wikimedia/mediawiki-extensions-MobileFrontend/archive/REL1_33.tar.gz \
+    && tar -xvf MobileFrontend.tar.gz --strip 1 -C MobileFrontend \
+
+    && mkdir -p NotebookViewer \
+    && curl -L -o NotebookViewer.tar.gz https://github.com/wikimedia/mediawiki-extensions-NotebookViewer/archive/REL1_33.tar.gz \
+    && tar -xvf NotebookViewer.tar.gz --strip 1 -C NotebookViewer \
+
+    && mkdir -p GoogleDocs4MW \
+    && curl -L -o GoogleDocs4MW.tar.gz https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW/archive/REL1_33.tar.gz \
+    && tar -xvf GoogleDocs4MW.tar.gz --strip 1 -C GoogleDocs4MW \
+
+    && mkdir -p Widgets \
+    && curl -L -o Widgets.tar.gz https://github.com/wikimedia/mediawiki-extensions-Widgets/archive/REL1_33.tar.gz \
+    && tar -xvf Widgets.tar.gz --strip 1 -C Widgets \
+#    && cd Widgets && composer update --no-dev && cd ../ \
+
+    && cd /opt/bitnami/mediawiki/skins \
+
+    && mkdir -p MinervaNeue \
+    && curl -L -o MinervaNeue.tar.gz https://github.com/wikimedia/mediawiki-skins-MinervaNeue/archive/REL1_33.tar.gz \
+    && tar -xvf MinervaNeue.tar.gz --strip 1 -C MinervaNeue \
+
+    && mkdir -p Tweeki \
+    && curl -L -o Tweeki.tar.gz https://github.com/thaider/Tweeki/archive/REL1_33.tar.gz \
+    && tar -xvf Tweeki.tar.gz --strip 1 -C Tweeki
+
 
 COPY ./rootfs/ /
 RUN cd /opt/bitnami/mediawiki && composer update --no-dev

@@ -45,6 +45,7 @@ RUN cd /opt/bitnami/mediawiki/extensions/ \
     && mkdir -p GoogleLogin \
     && curl -L -o GoogleLogin.tar.gz https://github.com/wikimedia/mediawiki-extensions-GoogleLogin/archive/REL1_33.tar.gz \
     && tar -xvf GoogleLogin.tar.gz --strip 1 -C GoogleLogin \
+    && cd GoogleLogin && composer update --no-dev && cd ../ \
 
     && mkdir -p Scribunto \
     && curl -L -o Scribunto.tar.gz https://github.com/wikimedia/mediawiki-extensions-Scribunto/archive/REL1_33.tar.gz \

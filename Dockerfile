@@ -95,7 +95,7 @@ RUN cd /opt/bitnami/mediawiki/extensions/ \
     && tar -xvf MinervaNeue.tar.gz --strip 1 -C MinervaNeue \
 
     && mkdir -p Tweeki \
-    && curl -L -o Tweeki.tar.gz https://github.com/thaider/Tweeki/archive/REL1_33.tar.gz \
+    && curl -L -o Tweeki.tar.gz https://github.com/thaider/Tweeki/archive/v1.1.2.tar.gz \
     && tar -xvf Tweeki.tar.gz --strip 1 -C Tweeki
 
 

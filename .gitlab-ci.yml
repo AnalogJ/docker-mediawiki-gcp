@@ -16,6 +16,6 @@ build:
   stage: build
   script:
     # Build and tag image for both GCR and Gitlab registries
-    - docker build --cache-from -t gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH .
+    - docker build -t gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH .
     # Push image to GCR
     - docker push gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH

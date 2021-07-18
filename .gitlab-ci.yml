@@ -1,0 +1,20 @@
+#https://colinwilson.uk/2020/07/10/configure-gitlab-ci-with-google-container-registry/
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+
+before_script:
+  # Login to Google Container Registry (push credential from global-secret project).
+  - base64 -d $GCP_SA_KEY | docker login -u _json_key --password-stdin https://gcr.io
+
+build:
+  stage: build
+  script:
+    # Build and tag image for both GCR and Gitlab registries
+    - docker build --cache-from -t gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH .
+    # Push image to GCR
+    - docker push gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH

@@ -9,7 +9,7 @@ stages:
 
 before_script:
   # Login to Google Container Registry (push credential from global-secret project).
-  - base64 -d $GCP_SA_KEY | docker login -u _json_key --password-stdin https://gcr.io
+  - docker login -u _json_key --password-stdin https://gcr.io < $GCP_SA_KEY
 
 build:
   stage: build

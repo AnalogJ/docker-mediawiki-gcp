@@ -10,12 +10,12 @@ stages:
 before_script:
   # Login to Google Container Registry (push credential from global-secret project).
   - base64 -d $GCP_SA_KEY > key.json
-  - docker login -u _json_key --password-stdin https://gcr.io < key.json
+  - docker login -u _json_key --password-stdin https://gcr.io/creyonbio-registry < key.json
 
 build:
   stage: build
   script:
     # Build and tag image for both GCR and Gitlab registries
-    - docker build -t gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH .
+    - docker build -t gcr.io/creyonbio-registry/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH .
     # Push image to GCR
-    - docker push gcr.io/global-registry-eeca/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH
+    - docker push gcr.io/creyonbio-registry/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH

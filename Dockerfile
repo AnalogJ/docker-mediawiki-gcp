@@ -6,7 +6,7 @@ USER root
 # https://phabricator.wikimedia.org/T177477
 COPY patches/tables.sql.patch /opt/bitnami/mediawiki/maintenance/tables.sql.patch
 RUN apt-get update \
-    && apt-get install -y patch \
+    && apt-get install -y patch imagemagick \
     && cd /opt/bitnami/mediawiki/maintenance/ \
     && patch tables.sql tables.sql.patch
 

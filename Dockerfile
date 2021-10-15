@@ -34,6 +34,9 @@ RUN cd /opt/bitnami/mediawiki/extensions/ \
     && curl -L -o Math.tar.gz https://github.com/wikimedia/mediawiki-extensions-Math/archive/REL1_33.tar.gz \
     && tar -xvf Math.tar.gz --strip 1 -C Math \
 
+    && mkdir -p MathJax \
+    && git clone https://github.com/xeyownt/mediawiki-mathjax MathJax \
+
     && git clone https://github.com/wikimedia/mediawiki-extensions-VisualEditor.git VisualEditor \
     && cd VisualEditor \
     && git checkout f64e411614a15e4028843c6f8199c3c5f3c08f1d \

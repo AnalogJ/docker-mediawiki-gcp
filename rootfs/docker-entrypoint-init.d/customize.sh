@@ -80,6 +80,7 @@ wfLoadExtension( 'ParserFunctions' );
 $wgPFEnableStringFunctions = true;
 
 wfLoadExtension( 'Math' );
+wfLoadExtension( 'MathJax' );
 
 ## Visual Editor
 #

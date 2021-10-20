@@ -10,7 +10,7 @@ COPY patches/httpd-vhost-php.conf.tpl.patch /root/.nami/components/com.bitnami.m
 RUN apt-get update \
     && apt-get install -y patch nano git ca-certificates \
     && sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_Root_CA_X3.crt=' /etc/ca-certificates.conf \
-    && update-ca-certificates
+    && update-ca-certificates \
     && cd /opt/bitnami/mediawiki/maintenance/ \
     && patch tables.sql tables.sql.patch \
     && cd /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/ \

@@ -9,13 +9,15 @@ COPY patches/tables.sql.patch /opt/bitnami/mediawiki/maintenance/tables.sql.patc
 COPY patches/httpd-vhost-php.conf.tpl.patch /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/httpd-vhost-php.conf.tpl.patch
 RUN apt-get update \
     && apt-get install -y patch nano git ca-certificates \
+    && sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_Root_CA_X3.crt=' /etc/ca-certificates.conf \
+    && update-ca-certificates
     && cd /opt/bitnami/mediawiki/maintenance/ \
     && patch tables.sql tables.sql.patch \
     && cd /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/ \
     && patch httpd-vhost-php.conf.tpl httpd-vhost-php.conf.tpl.patch
 
 # download Composer, used for managing Mediawiki extensions
-RUN curl -L -k -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \
+RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \
     && chmod +x /usr/local/bin/composer \
     && composer --help
 #

@@ -15,7 +15,7 @@ RUN apt-get update \
     && patch httpd-vhost-php.conf.tpl httpd-vhost-php.conf.tpl.patch
 
 # download Composer, used for managing Mediawiki extensions
-RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \
+RUN curl -L -k -o /usr/local/bin/composer https://getcomposer.org/composer-1.phar \
     && chmod +x /usr/local/bin/composer \
     && composer --help
 #

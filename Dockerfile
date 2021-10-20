@@ -8,7 +8,7 @@ ENV MW_INSTALL_PATH=/opt/bitnami/mediawiki
 COPY patches/tables.sql.patch /opt/bitnami/mediawiki/maintenance/tables.sql.patch
 COPY patches/httpd-vhost-php.conf.tpl.patch /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/httpd-vhost-php.conf.tpl.patch
 RUN apt-get update \
-    && apt-get install -y patch nano git \
+    && apt-get install -y patch nano git ca-certificates \
     && cd /opt/bitnami/mediawiki/maintenance/ \
     && patch tables.sql tables.sql.patch \
     && cd /root/.nami/components/com.bitnami.mediawiki/lib/handlers/webservers/apache/vhosts/ \

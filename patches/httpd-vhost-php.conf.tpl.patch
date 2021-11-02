@@ -1,0 +1,11 @@
+--- httpd-vhost-php.conf.tpl.orig       2019-12-18 21:32:51.000000000 +0000
++++ httpd-vhost-php.conf.tpl    2021-02-27 18:52:05.541247000 +0000
+@@ -9,6 +9,8 @@
+     AllowOverride {{allowOverride}}
+     Require {{requireOption}}
+     DirectoryIndex index.html index.php
++    RewriteEngine On
++    RewriteRule ^/?wiki(/.*)?$ %{DOCUMENT_ROOT}/index.php [L]
+     {{phpFpmHandler}}
+     {{extraDirectoryConfiguration}}
+   </Directory>

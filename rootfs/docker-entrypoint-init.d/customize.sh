@@ -1,4 +1,6 @@
 # Note, using "cat <<'EOT'" means that the heredoc contents are a string literal -- substitution is disabled.
+echo "customize.sh -- change the logo path"
+sed -i -e 's/$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png"/$wgLogo = "$wgResourceBasePath/images/logo/wiki.png"/' /bitnami/mediawiki/LocalSettings.php
 
 echo "customize.sh -- set url config"
 cat <<'EOT' >> /bitnami/mediawiki/LocalSettings.php
